@@ -78,7 +78,7 @@ namespace BookShop
                     }
                 }
                 MessageBox.Show("Products Detail added successfully.");
-                LoadBooks(); // Refresh DataGridView after adding account
+                // LoadBooks(); // Refresh DataGridView after adding account
             }
             catch (MySqlException ex)
             {
@@ -106,7 +106,6 @@ namespace BookShop
                     }
                 }
                 MessageBox.Show("Product updated successfully.");
-                LoadBooks(); // Refresh DataGridView after updating account
             }
             catch (MySqlException ex)
             {
