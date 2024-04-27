@@ -345,5 +345,10 @@ namespace BookShop
             Details details = new Details();
             details.Show();
         }
+
+        private void txtUN_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
