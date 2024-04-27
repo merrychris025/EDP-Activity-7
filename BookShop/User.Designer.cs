@@ -91,6 +91,7 @@
             this.txtUN.Name = "txtUN";
             this.txtUN.Size = new System.Drawing.Size(159, 23);
             this.txtUN.TabIndex = 2;
+            this.txtUN.TextChanged += new System.EventHandler(this.txtUN_TextChanged);
             // 
             // txtPW
             // 

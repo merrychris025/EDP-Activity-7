@@ -55,9 +55,9 @@
             this.BookName = new System.Windows.Forms.TextBox();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.Price = new System.Windows.Forms.TextBox();
+            this.price = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.CatID = new System.Windows.Forms.TextBox();
+            this.catid = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel3.SuspendLayout();
@@ -367,18 +367,18 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // Price
+            // price
             // 
-            this.Price.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Price.Location = new System.Drawing.Point(187, 70);
-            this.Price.Name = "Price";
-            this.Price.Size = new System.Drawing.Size(86, 23);
-            this.Price.TabIndex = 3;
+            this.price.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.price.Location = new System.Drawing.Point(187, 70);
+            this.price.Name = "price";
+            this.price.Size = new System.Drawing.Size(86, 23);
+            this.price.TabIndex = 3;
             // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panel4.Controls.Add(this.CatID);
+            this.panel4.Controls.Add(this.catid);
             this.panel4.Controls.Add(this.label7);
             this.panel4.Controls.Add(this.label2);
             this.panel4.Controls.Add(this.label6);
@@ -387,19 +387,19 @@
             this.panel4.Controls.Add(this.BookName);
             this.panel4.Controls.Add(this.btnUpdate);
             this.panel4.Controls.Add(this.btnAdd);
-            this.panel4.Controls.Add(this.Price);
+            this.panel4.Controls.Add(this.price);
             this.panel4.Location = new System.Drawing.Point(184, 57);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(436, 152);
             this.panel4.TabIndex = 26;
             // 
-            // CatID
+            // catid
             // 
-            this.CatID.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CatID.Location = new System.Drawing.Point(286, 70);
-            this.CatID.Name = "CatID";
-            this.CatID.Size = new System.Drawing.Size(112, 23);
-            this.CatID.TabIndex = 22;
+            this.catid.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.catid.Location = new System.Drawing.Point(286, 70);
+            this.catid.Name = "catid";
+            this.catid.Size = new System.Drawing.Size(112, 23);
+            this.catid.TabIndex = 22;
             // 
             // label7
             // 
@@ -435,6 +435,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Books";
+            this.Load += new System.EventHandler(this.Books_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -476,9 +477,9 @@
         private System.Windows.Forms.TextBox BookName;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.TextBox Price;
+        private System.Windows.Forms.TextBox price;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.TextBox CatID;
+        private System.Windows.Forms.TextBox catid;
         private System.Windows.Forms.Label label7;
     }
 }

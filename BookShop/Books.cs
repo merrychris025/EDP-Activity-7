@@ -11,6 +11,7 @@ using MySql.Data;
 using MySql.Data.MySqlClient;
 using ClosedXML.Excel;
 using DocumentFormat.OpenXml.Bibliography;
+using SixLabors.Fonts;
 
 
 namespace BookShop
@@ -85,6 +86,33 @@ namespace BookShop
             }
         }
 
+        private void UpdateBooks(int userId, string ProductName, decimal Price, int CategoryID)
+        {
+            string connectionString = "Server=127.0.0.1;Port=3306;Database=book_shop;Uid=behati;Pwd=Admin123;";
+            string sql = "UPDATE users SET productName = @productName, price = @price, category = @category WHERE id = @id";
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", userId);
+                        cmd.Parameters.AddWithValue("@productName", ProductName);
+                        cmd.Parameters.AddWithValue("@price", Price);
+                        cmd.Parameters.AddWithValue("@category", CategoryID);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                MessageBox.Show("Account updated successfully.");
+                LoadBooks(); // Refresh DataGridView after updating account
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Error updating product: " + ex.Message);
+            }
+        }
         private void label6_Click(object sender, EventArgs e)
         {
 
@@ -115,6 +143,8 @@ namespace BookShop
 
             }
         }
+
+        
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -181,6 +211,11 @@ namespace BookShop
             this.Close();
             Details details = new Details();
             details.Show();
+        }
+
+        private void Books_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
