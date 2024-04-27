@@ -62,7 +62,7 @@ namespace BookShop
         private void AddBooks(string ProductName, decimal Price, int CategoryID)
         {
             string connectionString = "Server=127.0.0.1;Port=3306;Database=book_shop;Uid=behati;Pwd=Admin123;";
-            string sql = "INSERT INTO Customers (ProductName, Price, CategoryID) VALUES (@ProductName, @Price, @CategoryID)";
+            string sql = "INSERT INTO Products (ProductName, Price, CategoryID) VALUES (@ProductName, @Price, @CategoryID)";
 
             try
             {
@@ -77,7 +77,7 @@ namespace BookShop
                         cmd.ExecuteNonQuery();
                     }
                 }
-                MessageBox.Show("Customer Detail added successfully.");
+                MessageBox.Show("Products Detail added successfully.");
                 LoadBooks(); // Refresh DataGridView after adding account
             }
             catch (MySqlException ex)
@@ -89,7 +89,7 @@ namespace BookShop
         private void UpdateBooks(int userId, string ProductName, decimal Price, int CategoryID)
         {
             string connectionString = "Server=127.0.0.1;Port=3306;Database=book_shop;Uid=behati;Pwd=Admin123;";
-            string sql = "UPDATE users SET productName = @productName, price = @price, category = @category WHERE id = @id";
+            string sql = "UPDATE Products SET productName = @productName, price = @price, category = @category WHERE id = @id";
 
             try
             {
@@ -105,7 +105,7 @@ namespace BookShop
                         cmd.ExecuteNonQuery();
                     }
                 }
-                MessageBox.Show("Account updated successfully.");
+                MessageBox.Show("Product updated successfully.");
                 LoadBooks(); // Refresh DataGridView after updating account
             }
             catch (MySqlException ex)
@@ -144,16 +144,66 @@ namespace BookShop
             }
         }
 
-        
-
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            string ProductName = BookName.Text;
+            decimal Price = decimal.Parse(price.Text);
+            int CategoryID = int.Parse(catid.Text);
 
+            AddBooks(ProductName, Price, CategoryID);
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            if (dataGridViewBook.SelectedRows.Count > 0)
+            {
+                int selectedRowIndex = dataGridViewBook.SelectedRows[0].Index;
+                int userId = Convert.ToInt32(dataGridViewBook.Rows[selectedRowIndex].Cells["id"].Value);
+                string ProductName = BookName.Text;
+                decimal Price = decimal.Parse(price.Text);
+                int CategoryID = int.Parse(catid.Text);
 
+                UpdateBooks(userId, ProductName, Price, CategoryID);
+            }
+            else
+            {
+                MessageBox.Show("Please select a row to update.");
+            }
+        }
+
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string ProductName = txtSearch.Text;
+            SearchAccounts(ProductName);
+        }
+
+        private void SearchAccounts(string username)
+        {
+            string connectionString = "Server=127.0.0.1;Port=3306;Database=book_shop;Uid=behati;Pwd=Admin123;";
+            string sql = "SELECT * FROM Products WHERE ProductName LIKE @productName";
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@productName", "%" + ProductName + "%");
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                        {
+                            DataTable dataTable = new DataTable();
+                            adapter.Fill(dataTable);
+                            dataGridViewBook.DataSource = dataTable;
+                        }
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Error searching product: " + ex.Message);
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -161,11 +211,7 @@ namespace BookShop
 
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        
         private void label7_Click(object sender, EventArgs e)
         {
 
